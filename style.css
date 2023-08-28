@@ -1,0 +1,38 @@
+#students {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  margin: 2em;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+#students section {
+  width: 150px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-flow: no-wrap;
+  align-items: center;
+  overflow: hidden;
+  justify-content: center;
+}
+
+#students h2 {
+  font-size: 105%;
+  text-align: center;
+  /* display: block; */
+}
+img {
+  width: 150px;
+  height: 250px;
+
+}
+
+@media print {
+  input {
+    display: none;
+  }
+}
