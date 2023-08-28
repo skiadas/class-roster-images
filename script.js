@@ -39,11 +39,18 @@ function process(file) {
   file.text().then((data) => {
     const el = document.createElement("html");
     el.innerHTML = data;
+    console.log(el);
+    const header = el.querySelectorAll("thead tr")[1];
+    const columnEntries = header.querySelectorAll("th");
+    const columnTitles = [...columnEntries].map((n) => n.textContent);
+    const nameRow = columnTitles.indexOf("Student");
+    const emailRow = columnTitles.indexOf("Email");
+    console.log(nameRow, emailRow)
     const rows = el.querySelectorAll("tbody tr");
     const results = [];
     for (const r of rows) {
-      const name = r.querySelector("td:nth-child(3)").textContent;
-      const email = r.querySelector("td:nth-child(5)").textContent;
+      const name = r.querySelector(`td:nth-child(${nameRow + 1})`).textContent;
+      const email = r.querySelector(`td:nth-child(${emailRow + 1})`).textContent;
       results.push({ name, email });
     }
     createPageFrom(results);
