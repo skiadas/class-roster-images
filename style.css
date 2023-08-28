@@ -50,6 +50,16 @@ img {
 
 }
 
+#options button {
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+}
+
+#options button:hover {
+  filter: brightness(80%);
+}
+
+
 #options label {
   width: fit-content;
   padding: 0.2em;

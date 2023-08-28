@@ -14,6 +14,9 @@ window.addEventListener("DOMContentLoaded", () => {
       h1.setAttribute("hidden", "true");
     }
   });
+  document.getElementById("print").addEventListener("click", () => {
+    print();
+  });
 });
 
 function process(file) {
