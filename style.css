@@ -44,7 +44,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: left;
-  width: 100%;
+  width: 100% !important;
   border-radius: 1px;
 }
 
@@ -58,6 +58,19 @@ img {
   width: 150px;
   height: 250px;
 
+}
+
+.small img {
+  width: 80px;
+  height: 120px;
+}
+
+.small #students section {
+  width: 80px;
+}
+
+.small #students h2 {
+  font-size: 90%;
 }
 
 #options {
@@ -97,7 +110,7 @@ h1 {
   text-align: center;
 }
 
-.list #toList, .grid #toGrid {
+.list #toList, .grid #toGrid, .small #toSmall, .large #toLarge {
   filter: brightness(70%);
 }
 

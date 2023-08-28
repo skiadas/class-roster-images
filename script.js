@@ -25,6 +25,14 @@ window.addEventListener("DOMContentLoaded", () => {
     document.querySelector("main").classList.remove("grid");
     document.querySelector("main").classList.add("list");
   });
+  document.getElementById("toSmall").addEventListener("click", () => {
+    document.querySelector("main").classList.remove("large");
+    document.querySelector("main").classList.add("small");
+  });
+  document.getElementById("toLarge").addEventListener("click", () => {
+    document.querySelector("main").classList.remove("small");
+    document.querySelector("main").classList.add("large");
+  });
 });
 
 function process(file) {
