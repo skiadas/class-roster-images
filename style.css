@@ -23,7 +23,6 @@
 #students h2 {
   font-size: 105%;
   text-align: center;
-  /* display: block; */
 }
 img {
   width: 150px;
@@ -32,7 +31,34 @@ img {
 }
 
 @media print {
-  input {
+  #options * {
     display: none;
   }
+}
+
+#options {
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+  gap: 1em;
+}
+
+#options * {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0.2em;
+
+}
+
+#options label {
+  width: fit-content;
+  padding: 0.2em;
+}
+
+#options label:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+h1 {
+  text-align: center;
 }

@@ -6,6 +6,14 @@ window.addEventListener("DOMContentLoaded", () => {
       process(fileList[0]);
     }
   });
+  document.getElementById("include-title").addEventListener("change", (event) => {
+    const h1 = document.querySelector("h1");
+    if (event.target.checked) {
+      h1.removeAttribute("hidden");
+    } else {
+      h1.setAttribute("hidden", "true");
+    }
+  });
 });
 
 function process(file) {
