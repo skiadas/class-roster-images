@@ -6,11 +6,15 @@
 
 <body>
 
-  <main>
+  <main class="grid">
     <section id="options">
       <input id="file-selector" type="file" />
       <label>Include a title: <input id="include-title" type="checkbox"></label>
       <button id="print">Print</button>
+      <div class="button-group">
+        <button id="toGrid">Grid</button>
+        <button id="toList">List</button>
+      </div>
     </section>
     <h1 contenteditable="true" hidden>Edit title</h1>
     <section id="students"></section>

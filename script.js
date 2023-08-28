@@ -17,6 +17,14 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("print").addEventListener("click", () => {
     print();
   });
+  document.getElementById("toGrid").addEventListener("click", () => {
+    document.querySelector("main").classList.remove("list");
+    document.querySelector("main").classList.add("grid");
+  });
+  document.getElementById("toList").addEventListener("click", () => {
+    document.querySelector("main").classList.remove("grid");
+    document.querySelector("main").classList.add("list");
+  });
 });
 
 function process(file) {
