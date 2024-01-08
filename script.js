@@ -6,14 +6,16 @@ window.addEventListener("DOMContentLoaded", () => {
       process(fileList[0]);
     }
   });
-  document.getElementById("include-title").addEventListener("change", (event) => {
-    const h1 = document.querySelector("h1");
-    if (event.target.checked) {
-      h1.removeAttribute("hidden");
-    } else {
-      h1.setAttribute("hidden", "true");
-    }
-  });
+  document
+    .getElementById("include-title")
+    .addEventListener("change", (event) => {
+      const h1 = document.querySelector("h1");
+      if (event.target.checked) {
+        h1.removeAttribute("hidden");
+      } else {
+        h1.setAttribute("hidden", "true");
+      }
+    });
   document.getElementById("print").addEventListener("click", () => {
     print();
   });
@@ -37,24 +39,39 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function process(file) {
   file.text().then((data) => {
-    const el = document.createElement("html");
-    el.innerHTML = data;
-    console.log(el);
-    const header = el.querySelectorAll("thead tr")[1];
-    const columnEntries = header.querySelectorAll("th");
-    const columnTitles = [...columnEntries].map((n) => n.textContent);
-    const nameRow = columnTitles.indexOf("Student");
-    const emailRow = columnTitles.indexOf("Email");
-    console.log(nameRow, emailRow)
-    const rows = el.querySelectorAll("tbody tr");
-    const results = [];
-    for (const r of rows) {
-      const name = r.querySelector(`td:nth-child(${nameRow + 1})`).textContent;
-      const email = r.querySelector(`td:nth-child(${emailRow + 1})`).textContent;
-      results.push({ name, email });
-    }
-    createPageFrom(results);
+    if (data.match(/<html/i)) processAsHTML(data);
+    else processAsCSV(data);
   });
+}
+
+function processAsCSV(data) {
+  if (!Papa) throw new Error("Missing papaparse dependency");
+  const csv = Papa.parse(data);
+  const dataRows = csv.data.filter((arr) =>
+    arr.some((s) => s.match(/@hanover.edu/))
+  );
+  const results = dataRows.map(([name, _a, _b, email]) => ({ name, email }));
+  createPageFrom(results);
+}
+
+function processAsHTML(data) {
+  const el = document.createElement("html");
+  el.innerHTML = data;
+  console.log(el);
+  const header = el.querySelectorAll("thead tr")[1];
+  const columnEntries = header.querySelectorAll("th");
+  const columnTitles = [...columnEntries].map((n) => n.textContent);
+  const nameRow = columnTitles.indexOf("Student");
+  const emailRow = columnTitles.indexOf("Email");
+  console.log(nameRow, emailRow);
+  const rows = el.querySelectorAll("tbody tr");
+  const results = [];
+  for (const r of rows) {
+    const name = r.querySelector(`td:nth-child(${nameRow + 1})`).textContent;
+    const email = r.querySelector(`td:nth-child(${emailRow + 1})`).textContent;
+    results.push({ name, email });
+  }
+  createPageFrom(results);
 }
 
 function createPageFrom(results) {
@@ -65,6 +82,6 @@ function createPageFrom(results) {
     const [last, first, middle] = name.split(/[, ]+/g);
     const imgLink = `https://my.hanover.edu/icsfileserver/icsphotos/${login}.jpg`;
     const html = `<section><img src="${imgLink}" /><h2>${first} ${last}</h2></section>`;
-    studentsEl.insertAdjacentHTML('beforeend', html);
+    studentsEl.insertAdjacentHTML("beforeend", html);
   }
 }
