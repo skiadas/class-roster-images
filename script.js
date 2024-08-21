@@ -50,7 +50,7 @@ function processAsCSV(data) {
   const dataRows = csv.data.filter((arr) =>
     arr.some((s) => s.match(/@hanover.edu/))
   );
-  const results = dataRows.map(([name, _a, _b, email]) => ({ name, email }));
+  const results = dataRows.map(([name, _a, id, email]) => ({ name, email, id }));
   createPageFrom(results);
 }
 
@@ -63,13 +63,14 @@ function processAsHTML(data) {
   const columnTitles = [...columnEntries].map((n) => n.textContent);
   const nameRow = columnTitles.indexOf("Student");
   const emailRow = columnTitles.indexOf("Email");
-  console.log(nameRow, emailRow);
+  const idRow = columnTitles.indexOf("Student ID");
   const rows = el.querySelectorAll("tbody tr");
   const results = [];
   for (const r of rows) {
     const name = r.querySelector(`td:nth-child(${nameRow + 1})`).textContent;
     const email = r.querySelector(`td:nth-child(${emailRow + 1})`).textContent;
-    results.push({ name, email });
+    const id = r.querySelector(`td:nth-child(${idRow + 1})`).textContent;
+    results.push({ name, email, id });
   }
   createPageFrom(results);
 }
@@ -77,10 +78,11 @@ function processAsHTML(data) {
 function createPageFrom(results) {
   const studentsEl = document.querySelector("#students");
   studentsEl.innerHTML = "";
-  for (const { name, email } of results) {
+  for (const { name, email, id } of results) {
     const login = email.replace("@hanover.edu", "");
     const [last, first, middle] = name.split(/[, ]+/g);
-    const imgLink = `https://my.hanover.edu/icsfileserver/icsphotos/${login}.jpg`;
+    const imgLinkOld = `https://my.hanover.edu/icsfileserver/icsphotos/${login}.jpg`;
+    const imgLink = `https://websites.hanover.edu/idphotos/${id}.jpg`
     const html = `<section><img src="${imgLink}" /><h2>${first} ${last}</h2></section>`;
     studentsEl.insertAdjacentHTML("beforeend", html);
   }
