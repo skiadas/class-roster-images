@@ -80,10 +80,11 @@ function createPageFrom(results) {
   studentsEl.innerHTML = "";
   for (const { name, email, id } of results) {
     const login = email.replace("@hanover.edu", "");
-    const [last, first, middle] = name.split(/[, ]+/g);
+    const [last, firstNames] = name.split(/(?:\,\s+)/g);
+    const [first, middle] = firstNames.split(/\s+/);
     const imgLinkOld = `https://my.hanover.edu/icsfileserver/icsphotos/${login}.jpg`;
     const imgLink = `https://websites.hanover.edu/idphotos/${id}.jpg`
-    const html = `<section><img src="${imgLink}" /><h2>${first} ${last}</h2></section>`;
+    const html = `<section><img src="${imgLink}" /><h2 contenteditable="true">${first} ${last}</h2></section>`;
     studentsEl.insertAdjacentHTML("beforeend", html);
   }
 }

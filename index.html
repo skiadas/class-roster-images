@@ -3,26 +3,29 @@
 <head>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"
-  integrity="sha512-dfX5uYVXzyU8+KHqj8bjo7UkOdg18PaOtpa48djpNbZHwExddghZ+ZmzWT06R5v6NSk3ZUfsH6FNEDepLx9hPQ=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    integrity="sha512-dfX5uYVXzyU8+KHqj8bjo7UkOdg18PaOtpa48djpNbZHwExddghZ+ZmzWT06R5v6NSk3ZUfsH6FNEDepLx9hPQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
 
   <main class="grid large">
-    <section id="options">
-      <input id="file-selector" type="file" />
-      <label>Include a title: <input id="include-title" type="checkbox"></label>
-      <button id="print">Print</button>
-      <div class="button-group">
-        <button id="toGrid">Grid</button>
-        <button id="toList">List</button>
-      </div>
-      <div class="button-group">
-        <button id="toSmall">Small</button>
-        <button id="toLarge">Large</button>
-      </div>
-    </section>
+    <header>
+      <h4>Start by uploading a file. If any of the generated names are not right, you can click and edit them.</h4>
+      <section id="options">
+        <input id="file-selector" type="file" />
+        <label>Include a title: <input id="include-title" type="checkbox"></label>
+        <button id="print">Print</button>
+        <div class="button-group">
+          <button id="toGrid">Grid</button>
+          <button id="toList">List</button>
+        </div>
+        <div class="button-group">
+          <button id="toSmall">Small</button>
+          <button id="toLarge">Large</button>
+        </div>
+      </section>
+    </header>
     <h1 contenteditable="true" hidden>Edit title</h1>
     <section id="students"></section>
   </main>

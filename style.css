@@ -1,9 +1,16 @@
 @media print {
-  #options {
+  header {
     display: none !important;
   }
   h1 {
     margin-top: 0.5em;
+  }
+  #students section {
+    break-inside: avoid;
+  }
+  #students section * {
+    break-before: avoid;
+    break-after: avoid;
   }
 }
 
@@ -71,6 +78,12 @@ img {
 
 .small #students h2 {
   font-size: 90%;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #options {
