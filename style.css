@@ -2,6 +2,9 @@
   header {
     display: none !important;
   }
+  .delete {
+    display: none !important;
+  }
   h1 {
     margin-top: 0.5em;
   }
@@ -34,6 +37,7 @@
   align-items: center;
   overflow: hidden;
   justify-content: center;
+  position: relative;
 }
 
 #students h2 {
@@ -140,4 +144,29 @@ h1 {
 #options .button-group button:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+#students section button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 20px;
+  color: red;
+  opacity: 0.4;
+}
+
+#students section button:hover {
+  opacity: 1;
+}
+
+#instructions li::marker {
+  content: "\27BC";
+}
+#instructions li::before {
+  content: "";
+  padding-left: 2px !important;
 }

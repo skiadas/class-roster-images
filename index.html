@@ -11,7 +11,13 @@
 
   <main class="grid large">
     <header>
-      <h4>Start by uploading a file. If any of the generated names are not right, you can double-click and edit them.</h4>
+      <ul id="instructions">
+        <li>Start by uploading a class roster file (export from my.hanover, or Canvas csv).</li>
+        <li>You may also manually add students if you know their 6 digit ids.</li>
+        <li>If any of the generated names are not right, you can double-click and edit them.</li>
+        <li>You can click the "x" button at the top right of a photo to remove that student. Don't worry, the X should go away when you print.</li>
+        <li>You can rearrange the student order by simple drag and drop.</li>
+      </ul>
       <section id="options">
         <input id="file-selector" type="file" />
         <label>Include a title: <input id="include-title" type="checkbox"></label>
@@ -24,6 +30,12 @@
           <button id="toSmall">Small</button>
           <button id="toLarge">Large</button>
         </div>
+        <button id="manualAddToggle">Manual add</button>
+      </section>
+      <section id="manualAddSection" class="hidden">
+        <label>You may edit the name after the student is added.</label>
+        <input id="studentId" type="number" placeholder="6-digit id" />
+        <button id="manualAddSubmit">Add</button>
       </section>
     </header>
     <h1 contenteditable="true" hidden>Edit title</h1>
