@@ -132,13 +132,24 @@ function createPageFrom(results) {
   studentsEl.innerHTML = "";
   for (const { name, email, id } of results) {
     const login = email.replace("@hanover.edu", "");
-    const [last, firstNames] = name.split(/(?:\,\s+)/g);
-    const [first, middle] = firstNames.split(/\s+/);
+    const [last, first] = splitName(name);
     const imgLinkOld = `https://my.hanover.edu/icsfileserver/icsphotos/${login}.jpg`;
     const fullName = `${first} ${last}`;
     const html = makeStudentEntry({ id, name: fullName });
     studentsEl.insertAdjacentHTML("beforeend", html);
   }
+}
+
+function splitName(name) {
+  // Try to split with comma present:
+  const [last, firstNames] = name.split(/(?:\,\s+)/g);
+  if (firstNames) {
+    const [first, middle] = firstNames.split(/\s+/);
+    return [last, first];
+  }
+  // No comma, so has form: first .... last
+  const parts = name.split(/\s+/g);
+  return [parts[parts.length - 1], parts[0]];
 }
 
 function makeStudentEntry({ id, name }) {
